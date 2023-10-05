@@ -56,9 +56,18 @@ def upload_file():
     if file.filename == '':
         return "No selected file"
     
-    if file and allowed_file(file.filename):
-        content = file.read()
-        return render_template('index.html', content=content)
+    if file and file.filename.endswith('.txt'):
+        # Save the uploaded file
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file.save(file_path)
+
+        # You can add your processing logic here
+        result = llama2_main_function(file_path)
+        print("printing result.............")
+        print(result)
+
+        return render_template('index.html', content=result["message"])
+        
     else:
         return "Invalid file format. Please upload a .txt file."
 
