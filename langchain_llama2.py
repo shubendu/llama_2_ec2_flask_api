@@ -65,8 +65,8 @@ def llama2_main_function(file):
     # sm_loader = UnstructuredFileLoader("reltio_script.txt")
     print("Printing file =================================================================")
     print(file)
-    sm_loader = UnstructuredFileLoader(file)
-    sm_doc = sm_loader.load()
+    # sm_loader = UnstructuredFileLoader(file)
+    # sm_doc = sm_loader.load()
 
     chain = load_summarize_chain(llm, chain_type="map_reduce", verbose=True)
 
@@ -77,7 +77,7 @@ def llama2_main_function(file):
         chunk_overlap = 400
     )
 
-    sam_docs = text_splitter.split_documents(sm_doc)
+    sam_docs = text_splitter.split_documents(file)
 
     result = chain.run(sam_docs)
 
