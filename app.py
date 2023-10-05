@@ -66,7 +66,7 @@ def upload_file():
         print("printing result.............")
         print(result)
 
-        return render_template('index.html', content=result["message"])
+        return render_template('index.html', content=result)
         
     else:
         return "Invalid file format. Please upload a .txt file."
