@@ -21,7 +21,8 @@ def upload_file_api():
 
 
     file = request.files['file']
-    result = llama2_main_function(file)
+    content = file.read()
+    result = llama2_main_function(content)
     print("printing result.............")
     print(result)
     if file.filename == '':
