@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+from langchain_llama2 import llama2_main_function
 
 app = Flask(__name__)
 
@@ -18,16 +19,17 @@ def upload_file_api():
     if 'file' not in request.files:
         return jsonify({"error": "No file part"})
 
-    file = request.files['file']
 
+    file = request.files['file']
+    result = llama2_main_function(file)
+    print("printing result.............")
+    print(result)
     if file.filename == '':
         return jsonify({"error": "No selected file"})
 
     if file and file.filename.endswith('.txt'):
         content = file.read()
-        #llm file
-        #lloutput
-        return jsonify({"content": content.decode('utf-8')})
+        return jsonify({"result": content.decode('utf-8')})
     else:
         return jsonify({"error": "Invalid file format. Please upload a .txt file"})
 
