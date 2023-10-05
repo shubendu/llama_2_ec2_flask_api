@@ -63,6 +63,8 @@ def llama2_main_function(file):
 
 
     # sm_loader = UnstructuredFileLoader("reltio_script.txt")
+    print("Printing file =================================================================")
+    print(file)
     sm_loader = UnstructuredFileLoader(file)
     sm_doc = sm_loader.load()
 
