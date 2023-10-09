@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
-from langchain_llama2 import llama2_main_function
+#from langchain_llama2 import llama2_main_function
+from langchain_llama2_custom import llama2_main_function
 import os
 
 app = Flask(__name__)
